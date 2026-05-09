@@ -1,27 +1,30 @@
- Nepali Fake News Detector
+%%writefile app.py
+import streamlit as st
+import joblib
+import re
 
-An AI-powered web application designed to classify Nepali news headlines and articles as either **Real** or **Fake**. This project leverages Machine Learning and Natural Language Processing (NLP) to combat misinformation in the Nepali digital space.
+# यहाँ हामीले अघि बनाएको मोडेल र क्लीनिंग फंक्सन चाहिन्छ
+# यो उदाहरणका लागि सिम्पल राखिएको छ
+def clean_nepali_text(text):
+    text = re.sub(r'[^\u0900-\u097F\s]', '', text)
+    return text
 
-## 🚀 Overview
-The "Nepali Fake News Detector" uses a supervised learning approach to identify common patterns in misinformation, such as "clickbait" language, sensationalism, and unverified claims. It provides a simple web interface for users to verify news authenticity instantly.
+st.title("🇳🇵 नेपाली फेक न्यूज डिटेक्टर")
+st.write("समाचारको शीर्षक वा विवरण तल पेस्ट गर्नुहोस् र जाँच्नुहोस्।")
 
-## 🛠 Tech Stack
-*   **Language:** Python 3.x
-*   **Machine Learning:** Scikit-learn (Random Forest / Naive Bayes)
-*   **NLP:** TF-IDF Vectorization (with Unigrams, Bigrams, and Trigrams)
-*   **Web Framework:** Streamlit
-*   **Deployment:** Streamlit Community Cloud
+news_input = st.text_area("समाचार यहाँ राख्नुहोस्:", height=200)
 
-## 📊 How It Works
-1.  **Data Collection:** A balanced dataset consisting of verified news from reliable sources (like Onlinekhabar) and synthetic "fake" news samples.
-2.  **Preprocessing:** Text cleaning and vectorization using `TfidfVectorizer` with an `ngram_range` of (1, 3) to capture context.
-3.  **Classification:** A trained `Random Forest` model analyzes the input text.
-4.  **Probability Scoring:** The app returns a confidence score to indicate the likelihood of the classification.
-
-## 📂 Project Structure
-```text
-├── app.py                     # Main Streamlit application code
-├── final_nepali_detector.pkl   # Trained Machine Learning model (Joblib)
-├── requirements.txt           # List of Python dependencies
-├── README.md                  # Project documentation
-└── data/                      # (Optional) Dataset files
+if st.button("जाँच्नुहोस्"):
+    if news_input:
+        # यहाँ तपाईंको ट्रेन्ड मोडेल (model_pipeline) लोड गर्नुपर्छ
+        # अहिलेका लागि हामीले अघि बनाएको model_pipeline प्रयोग गरिरहेका छौं
+        # (नोट: वास्तविक एपमा मोडेललाई पहिले joblib.dump गरेर लोड गरिन्छ)
+        
+        # यहाँ परीक्षणको लागि मोडेल कल गर्ने (यो डेमो मात्र हो)
+        # prediction = model_pipeline.predict([clean_nepali_text(news_input)])
+        # st.header(f"नतिजा: {prediction[0]}")
+        
+        st.success("मोडेलले यो समाचारलाई विश्लेषण गर्दैछ...")
+        # यहाँ तपाईंको प्रेडिक्सन लोजिक राख्नुहोस्
+    else:
+        st.warning("कृपया केही टेक्स्ट लेख्नुहोस्।")
