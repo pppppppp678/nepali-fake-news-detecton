@@ -1,15 +1,4 @@
-git add README.md
-    git commit -m "Update README to professional English version"
-    git push origin main
-    ```
-
-This version perfectlySince you are an **Electronics and Communication Engineer** and **IT Teacher**, a professional English README will help you showcase your skills to a global audience on GitHub.
-
-Here is a comprehensive and well-structured **README.md** for your project:
-
----
-```markdown
-# 🔍 Nepali Fake News Detector
+ Nepali Fake News Detector
 
 An AI-powered web application designed to classify Nepali news headlines and articles as either **Real** or **Fake**. This project leverages Machine Learning and Natural Language Processing (NLP) to combat misinformation in the Nepali digital space.
 
