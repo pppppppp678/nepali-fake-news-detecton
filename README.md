@@ -1,27 +1,43 @@
-                                         Nepali Fake News Detector
+    # 📰 Nepalese Fake News Detection Engine
+> **An Applied Machine Learning & NLP Pipeline for Automated Misinformation Triaging in Low-Resource Languages.**
 
-An AI-powered web application designed to classify Nepali news headlines and articles as either **Real** or **Fake**. This project leverages Machine Learning and Natural Language Processing (NLP) to combat misinformation in the Nepali digital space.
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+[![Framework](https://img.shields.io/badge/Framework-Streamlit-FF4B4B.svg)](https://streamlit.io/)
+[![ML-Library](https://img.shields.io/badge/ML-Scikit--Learn-F7931E.svg)](https://scikit-learn.org/)
+[![NLP](https://img.shields.io/badge/NLP-Natural%20Language%20Processing-0284C7.svg)]()
 
-## 🚀 Overview
-The "Nepali Fake News Detector" uses a supervised learning approach to identify common patterns in misinformation, such as "clickbait" language, sensationalism, and unverified claims. It provides a simple web interface for users to verify news authenticity instantly.
+---
 
-## 🛠 Tech Stack
-*   **Language:** Python 3.x
-*   **Machine Learning:** Scikit-learn (Random Forest / Naive Bayes)
-*   **NLP:** TF-IDF Vectorization (with Unigrams, Bigrams, and Trigrams)
-*   **Web Framework:** Streamlit
-*   **Deployment:** Streamlit Community Cloud
+## 🎯 Production & Remote Market Overview
+While generic NLP models excel at high-resource languages (like English), **misinformation in low-resource, morphologically rich languages like Nepali presents a severe engineering bottleneck** due to the lack of pre-trained tokenizers, standard corpora, and stop-word metrics. 
 
-## 📊 How It Works
-1.  **Data Collection:** A balanced dataset consisting of verified news from reliable sources (like Onlinekhabar) and synthetic "fake" news samples.
-2.  **Preprocessing:** Text cleaning and vectorization using `TfidfVectorizer` with an `ngram_range` of (1, 3) to capture context.
-3.  **Classification:** A trained `Random Forest` model analyzes the input text.
-4.  **Probability Scoring:** The app returns a confidence score to indicate the likelihood of the classification.
+This repository demonstrates an end-to-end applied machine learning solution designed to parse, vectorize, and accurately classify textual news items into *Authentic* or *Satirical/Fake* categories, serving real-time inferences through an interactive dashboard.
 
-## 📂 Project Structure
+---
+
+## 🏗️ Architectural Pipeline & System Flow
+
+The core system bypasses traditional low-resource linguistics constraints by utilizing a custom text-processing pipeline integrated with vectorized feature extractors:
+
 ```text
-├── app.py                     # Main Streamlit application code
-├── final_nepali_detector.pkl   # Trained Machine Learning model (Joblib)
-├── requirements.txt           # List of Python dependencies
-├── README.md                  # Project documentation
-└── data/                      # (Optional) Dataset files
+[Raw Nepali Text Input]
+          │
+          ▼
+┌───────────────────────────┐
+│ Custom Text Preprocessing │ ──► Tokenization, Stop-words Stripping & De-noising
+└─────────┬─────────────────┘
+          │
+          ▼
+┌───────────────────────────┐
+│ Feature Extraction Layer  │ ──► TF-IDF Vectorizer (N-gram Range: Uni-grams & Bi-grams)
+└─────────┬─────────────────┘
+          │
+          ▼
+┌───────────────────────────┐
+│  Machine Learning Core    │ ──► Evaluation of MultinomialNB, PassiveAggressive, 
+└─────────┬─────────────────┘     and Logistic Regression Classifiers
+          │
+          ▼
+┌───────────────────────────┐
+│   Real-Time Inference     │ ──► Streamlit Web Engine Serving Millisecond Response
+└───────────────────────────┘
